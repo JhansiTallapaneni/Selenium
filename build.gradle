@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.automation-hacks'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    // Selenium & WebDriver
+    implementation 'org.seleniumhq.selenium:selenium-java:4.12.1'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.1'
+
+    // Test frameworks
+    testImplementation 'org.testng:testng:7.8.0'
+    implementation 'io.cucumber:cucumber-java:7.0.0'
+    implementation 'io.cucumber:cucumber-testng:7.0.0'
+    testImplementation 'io.cucumber:cucumber-testng:7.2.0'
+    testImplementation 'io.cucumber:cucumber-core:7.0.0'
+    implementation 'io.cucumber:gherkin:15.0.2'
+
+    // Logging & Reporting
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'com.epam.reportportal:agent-java-testng:5.3.0'
+    implementation 'com.epam.reportportal:logger-java-log4j:5.0.0'
+
+  
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.jsoup:jsoup:1.14.1'
+    implementation 'org.json:json:20220320'
+    implementation 'net.lingala.zip4j:zip4j:2.7.0'
+    implementation 'com.jayway.jsonpath:json-path:2.4.0'
+    implementation 'com.deque:axe-selenium:3.0'
+    implementation 'org.freemarker:freemarker:2.3.31'
+
+  
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-source' << '17'
+    options.compilerArgs << '-target' << '17'
+}
+
+test {
+    useTestNG()
+    include '**/*Test.class'
+}
